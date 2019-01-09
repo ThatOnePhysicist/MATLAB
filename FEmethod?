@@ -1,0 +1,39 @@
+delta t = input(’delta t: ’); n=input(’n: ’);
+delta x = 1/(n+1);
+disp([’delta x is ’, num2str(delta x)]);
+mu= delta t / delta xˆ2;
+disp ([ ’mu: ’ ,num2str(mu) ]) ;
+num steps = input(’# of time steps: ’);
+main diag = (1−2∗mu)∗ones(n,1) ;
+off diag = mu∗ones(n,1) ;
+fe mat = spdiags ([ off diag main diag off diag ] , −1:1, n, n) ;
+            %−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−− c CArray = [1.0 ,1.2 ,1.4 ,1.6 ,1.8 ,2.0];
+%−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+for i= 1:6
+c = CArray(i); d = c∗(1+2∗mu);
+%−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+v a l u e s a l l a t
+o n c e
+c− DONE
+a s k
+i n p u t
+f o r
+c r e a t e
+minvn−DONE
+main diag mn = ((c−1)/c)∗ones(n,1) ;
+off diag mn = (mu/d)∗ones(n,1) ;
+minvn mat = spdiags ([ off diag mn main diag mn off diag mn ] , −1:1, n, n) ;
+%−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−− c r e a t e minv−DONE
+main diag m = (1/d)∗ones(n,1) ;
+off diag m = 0∗mu∗ones(n,1);
+minv mat = spdiags([off diag m main diag m off diag m], −1:1, n, n);
+x = zeros(n,1); fori=1:n
+x(i) = i∗delta x; end
+oldu = sin(pi∗x);
+disp ([ ’mu: ’ ,num2str(mu) , ’c : ’ ,num2str(c) ]) ; for m = 1:num steps
+%−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−− r e p l a c e n e x t u nextu = minvn mat∗fe mat∗oldu+minv mat∗oldu ; exact = exp(−pi∗pi∗m∗delta t) ∗ sin(pi∗x);
+if m> num steps−10
+disp(norm(nextu−exact , inf)) endif ;
+oldu = nextu;
+end
+end
